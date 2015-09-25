@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Baidu Neitui</title>
+        <meta name="revised" value="yanni4night,2015/09/25"/>
+        <link rel="stylesheet" href="./styles/bootstrap.min.css"/>
+        <link rel="stylesheet" href="./styles/popup.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <form action="#">
+                <h3>百度内推职位搜索</h3>
+                <div class="selects"></div>
+                <div class="form-group">
+                    <lable for="keyword">关键词：</lable>
+                    <input type="text" class="form-control" name="keyword" placeholder="关键词">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                    <a href="http://hradmin.baidu.com/baidu/web/templet1000/index/corpwebPosition1000baidu!getPostListByConditionBaidu" target="_blank" class="btn btn-warning">获取授权</a>
+                </div>
+            </form>
+        </div>
+        <script type="text/tpl" id="tpl">
+        <% for(var i=0;i<filterGroups.length;++i) {%>
+        <div class="form-group">
+            <label for="<%=filterGroups[i].key%>"><%=filterGroups[i].name%></label>
+            <select name="<%=filterGroups[i].key%>" class="form-control">
+                <% for(var j=0;j<filterGroups[i].selects.length;++j){ %>
+                <option value="<%= filterGroups[i].selects[j].value %>">
+                    <%= filterGroups[i].selects[j].text %>
+                </option>
+                <% } %>
+            </select>
+        </div>
+        <% } %>
+        </script>
+    </body>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/require.js"></script>
+    <script src="scripts/popup.js"></script>
+</html>

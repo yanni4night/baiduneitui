@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Baidu Neitui",
+    "description": "Helper for Baidu Neitui",
+    "version": "1.0.0",
+    "permissions": [
+        "http://*.baidu.com/",
+        "https://*.baidu.com/"
+    ],
+    "icons": {
+        "256": "img/icons/icon_256.png",
+        "128": "img/icons/icon_128.png",
+        "64": "img/icons/icon_64.png"
+    },
+    "browser_action": {
+        "default_icon": "favicon.png",
+        "default_popup": "popup.html"
+    },
+    "web_accessible_resources": [
+        "favicon.png"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
