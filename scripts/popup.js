@@ -15,17 +15,28 @@ require(['./scripts/neitui', './lib/underscore'], function(Neitui, _) {
     var tplFunc = _.template($('#tpl').html());
 
 
-    var query = function() {
+    var query = function(isIntial) {
         var queriesArray = $('form').serializeArray();
-        var queryObj={};
-        
+        var queryObj = {};
+
         for (var i = queriesArray.length - 1; i >= 0; i--) {
             queryObj[queriesArray[i].name] = queriesArray[i].value;
         }
-        
+
         Neitui.query(queryObj, function(err, data) {
             console.log(err, data);
             $('.selects').html(err ? '<div class="alert alert-danger" role="alert">加载失败，请检查网络或重试</div>' : tplFunc(data));
+            if (!isIntial) {
+                localStorage.data = JSON.stringify(data);
+                chrome.tabs.create({
+                    url: 'result.html'
+                }, function(tab) {
+                    // alert(tab.tabId);
+                    /*chrome.tabs.sendMessage(tab.tabId, {
+                        data: data
+                    });*/
+                });
+            }
         });
     };
 
@@ -34,5 +45,5 @@ require(['./scripts/neitui', './lib/underscore'], function(Neitui, _) {
         query();
     });
 
-    query();
+    query(true);
 });

@@ -27,7 +27,7 @@ define(['./htmlparser'], function(htmlparser) {
 
             $.ajax({
                 url: 'http://hradmin.baidu.com/baidu/web/templet1000/index/corpwebPosition1000baidu!getPostListByConditionBaidu',
-                timeout: 2e3,
+               // timeout: 2e3,
                 data: queryObj,
                 cache: false
             }).done(function(content) {

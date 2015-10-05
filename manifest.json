@@ -5,7 +5,8 @@
     "version": "1.0.0",
     "permissions": [
         "http://*.baidu.com/",
-        "https://*.baidu.com/"
+        "https://*.baidu.com/",
+        "tabs"
     ],
     "icons": {
         "256": "img/icons/icon_256.png",
