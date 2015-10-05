@@ -9,18 +9,14 @@
  * @version 0.1.0
  * @since 0.1.0
  */
-require(['./scripts/neitui', './lib/underscore'], function (Neitui, _) {
+require(['./scripts/neitui', './lib/underscore'], function(Neitui, _) {
     _ = _ || window._;
-
     var tplFunc = _.template($('#tpl').html());
-
-    $(document).delegate('form', 'submit', function (e) {
+    $(document).delegate('form', 'submit', function(e) {
         e.preventDefault();
     });
-
-    Neitui.query($('form').serialize()||{}, function (err, data) {
+    Neitui.query($('form').serialize() || {}, function(err, data) {
         console.log(err, data);
-        $('.selects').html(tplFunc(data));
+        $('.selects').html(err ? '<div class="alert alert-danger" role="alert">加载失败，请检查网络或重试</div>' : tplFunc(data));
     });
-
 });
