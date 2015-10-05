@@ -23,7 +23,7 @@ require(['./scripts/neitui', './lib/underscore'], function(Neitui, _) {
             queryObj[queriesArray[i].name] = queriesArray[i].value;
         }
 
-        Neitui.query(queryObj, function(err, data) {
+        Neitui.parseSearchConds(queryObj, function(err, data) {
             console.log(err, data);
             $('.selects').html(err ? '<div class="alert alert-danger" role="alert">加载失败，请检查网络或重试</div>' : tplFunc(data));
             if (!isIntial) {

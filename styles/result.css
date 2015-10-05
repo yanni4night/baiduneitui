@@ -1,0 +1,81 @@
+/**
+  * Copyright (C) 2014 yanni4night.com
+  * result.css
+  *
+  * changelog
+  * 2015-10-06[00:27:42]:revised
+  *
+  * @author yanni4night@gmail.com
+  * @version 0.1.0
+  * @since 0.1.0
+  */
+
+.job-detail{
+    width: 960px;
+    margin:0 auto;
+    line-height: 22px;
+
+}
+.job-detail h3{
+    height: 32px;
+    font-size: 18px;
+    line-height: 32px;
+    margin:20px 0;
+    padding-left: 10px;
+}
+.job-detail p{
+    font-size: 14px;
+    font-weight: bold;
+    color:#136ec2;
+    padding-left: 10px;
+
+}
+#detail{
+    height:54px;
+    margin: 0;
+    border-bottom: #e5e5e5 1px solid;
+}
+.job-detail ul.job-info{
+    padding:14px 0 28px 0px;
+    margin-left:10px;
+    list-style: none;
+    text-decoration: none;
+    font-size: 12px;
+    border-bottom:1px solid #ccc;
+    overflow: hidden;
+}
+.job-detail .job-info li{
+    float:left;
+    padding-right: 48px;
+}
+.job-detail .job-info li span{
+    font-weight: bold;
+}
+.job-detail h4{
+    line-height: 22px;
+    margin:20px 0 0 10px;
+}
+.job-duty, .job-require{
+    padding:0 0 0 10px;
+}
+.job-duty li, .job-require li{
+    line-height: 22px;
+    list-style: none;
+}
+.job-detail .opration{margin: 20px 0 0 10px;}
+.job-detail .opration a{
+    display: block;
+    width: 150px;
+    height: 50px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    color:#fff;
+    font-weight: bold;
+    background: url("../images/inner/sprite.png") no-repeat -8px -99px;
+}
+.job-detail .opration a:hover{
+    background-position: -8px -160px;
+    text-decoration: none;
+
+}

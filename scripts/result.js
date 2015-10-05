@@ -9,22 +9,27 @@
  * @version 0.1.0
  * @since 0.1.0
  */
-//chrome.runtime.onMessage.addListener(function(data) {
-    //$('body').html('<pre>' + (localStorage.data) + '</pre>');;
-//});
 
-require(['./lib/underscore'],function(_){
-    _=_||window._;
-    var data = JSON.parse(localStorage.data||'');
+require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
+    _ = _ || window._;
+    var data = JSON.parse(localStorage.data || '');
     var jobs;
 
-    var tplFunc=_.template($('#tpl').html());
-    
-    if(!data || !Array.isArray(jobs = data.jobs) || !jobs.length){
+    var tplFunc = _.template($('#tpl').html());
+
+    if (!data || !Array.isArray(jobs = data.jobs) || !jobs.length) {
         // todo:show error
         return;
     }
 
-$('tbody').html(tplFunc(data));
+    $('tbody').html(tplFunc(data));
 
+    $(document).delegate('a', 'click', function(e) {
+        e.preventDefault();
+        Neitui.queryJobDetails($(this).attr('href'), function(err, jdHtml) {
+            //todo err
+            $(e.target).parents('tr').removeClass('jd-notloaded');
+            $(e.target).parent().html(jdHtml);
+        });
+    });
 });

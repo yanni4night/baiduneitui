@@ -4,11 +4,12 @@
         <meta charset="utf-8"/>
         <title>搜索结果</title>
         <link rel="stylesheet" href="./styles/bootstrap.min.css"/>
+        <link rel="stylesheet" href="./styles/result.css"/>
     </head>
     <body>
         <div class="container">
             <h1>查询结果</h1>
-        <table class="table">
+        <table class="table table-bordered table-striped job-detail">
             <tbody>
                 
             </tbody>
@@ -16,8 +17,8 @@
         </div>
         <script type="text/tpl" id="tpl">
             <% for(var i=0;i<jobs.length;++i) { %>
-                <tr>
-                    <td><input type="checkbox" checked/></td>
+                <tr class="jd-notloaded">
+                    <td><%= 1 + i %></td>
                     <td><a href="http://hradmin.baidu.com<%= jobs[i].link %>" target="_blank"><%= jobs[i].name %></a></td>
                 </tr>
             <% } %>
