@@ -42,5 +42,6 @@ require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
             var $a = $(tr).find('a.job');
             new JdLoader($a);
         });
+        $(this).parents('tr').remove();
     });
 });
