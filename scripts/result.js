@@ -24,12 +24,23 @@ require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
 
     $('tbody').html(tplFunc(data));
 
-    $(document).delegate('a', 'click', function(e) {
-        e.preventDefault();
-        Neitui.queryJobDetails($(this).attr('href'), function(err, jdHtml) {
+    function JdLoader($link) {
+        Neitui.queryJobDetails($link.attr('href'), function(err, jdHtml) {
             //todo err
-            $(e.target).parents('tr').removeClass('jd-notloaded');
-            $(e.target).parent().html(jdHtml);
+            $link.parents('tr').removeClass('jd-notloaded');
+            $link.parent().html(jdHtml);
+        });
+    }
+
+    $(document).delegate('a.job', 'click', function(e) {
+        e.preventDefault();
+        new JdLoader($(this));
+    });
+
+    $('button').click(function() {
+        $('tr.jd-notloaded').each(function(idx, tr) {
+            var $a = $(tr).find('a.job');
+            new JdLoader($a);
         });
     });
 });

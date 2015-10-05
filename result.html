@@ -13,13 +13,18 @@
             <tbody>
                 
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><button type="button" class="btn btn-info">加载所有JD</button></td>
+                </tr>
+            </tfoot>
         </table>
         </div>
         <script type="text/tpl" id="tpl">
             <% for(var i=0;i<jobs.length;++i) { %>
                 <tr class="jd-notloaded">
                     <td><%= 1 + i %></td>
-                    <td><a href="http://hradmin.baidu.com<%= jobs[i].link %>" target="_blank"><%= jobs[i].name %></a></td>
+                    <td><a class="job" href="http://hradmin.baidu.com<%= jobs[i].link %>"><%= jobs[i].name %></a></td>
                 </tr>
             <% } %>
         </script>
