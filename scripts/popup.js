@@ -11,12 +11,28 @@
  */
 require(['./scripts/neitui', './lib/underscore'], function(Neitui, _) {
     _ = _ || window._;
+
     var tplFunc = _.template($('#tpl').html());
+
+
+    var query = function() {
+        var queriesArray = $('form').serializeArray();
+        var queryObj={};
+        
+        for (var i = queriesArray.length - 1; i >= 0; i--) {
+            queryObj[queriesArray[i].name] = queriesArray[i].value;
+        }
+        
+        Neitui.query(queryObj, function(err, data) {
+            console.log(err, data);
+            $('.selects').html(err ? '<div class="alert alert-danger" role="alert">加载失败，请检查网络或重试</div>' : tplFunc(data));
+        });
+    };
+
     $(document).delegate('form', 'submit', function(e) {
         e.preventDefault();
+        query();
     });
-    Neitui.query($('form').serialize() || {}, function(err, data) {
-        console.log(err, data);
-        $('.selects').html(err ? '<div class="alert alert-danger" role="alert">加载失败，请检查网络或重试</div>' : tplFunc(data));
-    });
+
+    query();
 });

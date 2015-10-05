@@ -9,7 +9,7 @@
  * @version 0.1.0
  * @since 0.1.0
  */
-define([], function () {
+define([], function() {
 
     function parse(html) {
         var i, j;
@@ -25,13 +25,13 @@ define([], function () {
             doc.body.innerHTML = content;
 
             var filterGroups = Array.prototype.map.call($(
-                '#jobFilter .filterGroups .filterGroup', doc), function (filterGroup) {
+                '#jobFilter .filterGroups .filterGroup', doc), function(filterGroup) {
                 var $spans = $(filterGroup).children('span');
 
                 return {
                     name: $spans.eq(0).text().trim(),
                     key: ($spans[1].outerHTML.match(/\b\w+\('(\w+)'\,'(.*)'\)/) || [1, ''])[1],
-                    selects: Array.prototype.slice.call($spans, 1).map(function (span) {
+                    selects: Array.prototype.slice.call($spans, 1).map(function(span) {
                         return {
                             text: $(span).text().trim(),
                             value: (span.outerHTML.match(/\b\w+\('(\w+)'\,'(.*)'\)/) || [1, '',
@@ -42,10 +42,19 @@ define([], function () {
                 };
             });
 
+            var jobs = Array.prototype.map.call($('.charMarkList a', doc), function(job) {
+                var $job = $(job);
+                return {
+                    name: $job.text().trim(),
+                    link: $job.attr('href')
+                };
+            });
+
 
             iframe.parentNode.removeChild(iframe);
             return {
-                filterGroups: filterGroups
+                filterGroups: filterGroups,
+                jobs: jobs
             };
         } catch (e) {
             return null;
