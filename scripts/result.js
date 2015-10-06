@@ -21,18 +21,14 @@ require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
 
     var tplFunc = _.template($('#tpl').html());
 
-    /* if (!data || !Array.isArray(jobs = data.jobs) || !jobs.length) {
-         // todo:show error
-         return;
-     }*/
-
     $('tbody').html(tplFunc(data));
 
     function JdLoader($link) {
         Neitui.queryJobDetails($link.attr('href'), function(err, jdHtml) {
-            //todo err
-            $link.parents('tr').removeClass('jd-notloaded');
-            $link.parent().html(jdHtml);
+            if (jdHtml) {
+                $link.parents('tr').removeClass('jd-notloaded');
+                $link.parent().html(jdHtml);
+            }
         });
     }
 
