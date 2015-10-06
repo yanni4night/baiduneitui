@@ -12,15 +12,19 @@
 
 require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
     _ = _ || window._;
-    var data = JSON.parse(localStorage.data || '');
+    var data;
     var jobs;
+
+    try {
+        data = JSON.parse(localStorage.data);
+    } catch (e) {}
 
     var tplFunc = _.template($('#tpl').html());
 
-    if (!data || !Array.isArray(jobs = data.jobs) || !jobs.length) {
-        // todo:show error
-        return;
-    }
+    /* if (!data || !Array.isArray(jobs = data.jobs) || !jobs.length) {
+         // todo:show error
+         return;
+     }*/
 
     $('tbody').html(tplFunc(data));
 
@@ -35,9 +39,7 @@ require(['./lib/underscore', './scripts/neitui'], function(_, Neitui) {
     $(document).delegate('a.job', 'click', function(e) {
         e.preventDefault();
         new JdLoader($(this));
-    });
-
-    $('button').click(function() {
+    }).delegate('.jd-loadall', 'click', function() {
         $('tr.jd-notloaded').each(function(idx, tr) {
             var $a = $(tr).find('a.job');
             new JdLoader($a);

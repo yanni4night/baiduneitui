@@ -8,25 +8,30 @@
     </head>
     <body>
         <div class="container">
-            <h1>查询结果</h1>
+            
         <table class="table table-bordered table-striped job-detail">
+            <caption><h1>查询结果</h1></caption>
             <tbody>
                 
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2"><button type="button" class="btn btn-info">加载所有JD</button></td>
-                </tr>
-            </tfoot>
         </table>
         </div>
         <script type="text/tpl" id="tpl">
+        <% if('undefined' !== typeof jobs && Array.isArray(jobs) && jobs.length){ %>
             <% for(var i=0;i<jobs.length;++i) { %>
                 <tr class="jd-notloaded">
                     <td><%= 1 + i %></td>
                     <td><a class="job" href="http://hradmin.baidu.com<%= jobs[i].link %>"><%= jobs[i].name %></a></td>
                 </tr>
             <% } %>
+                <tr>
+                    <td colspan="2"><button type="button" class="btn btn-info jd-loadall">加载所有JD</button></td>
+                </tr>
+        <% } else { %>
+            <tr>
+                <td colspan="2">无查询结果</td>
+            </tr>
+        <% } %>
         </script>
     </body>
     <script src="lib/jquery.js"></script>
